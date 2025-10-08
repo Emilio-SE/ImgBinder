@@ -1,3 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('assets/fonts/Nunito/Nunito-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('assets/fonts/Nunito/Nunito-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('assets/fonts/Nunito/Nunito-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('assets/fonts/Nunito/Nunito-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+  font-family: 'Nunito', Roboto, sans-serif;
+  font-weight: 400;
+}
