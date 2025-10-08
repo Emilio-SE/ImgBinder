@@ -53,7 +53,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
-          output_location: "dist/FAEIT.Legacy.IP.Client"
+          output_location: "dist/ImgBinder/browser"
           skip_app_build: true
 
   deploy_preview:
@@ -75,7 +75,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
-          output_location: "dist/FAEIT.Legacy.IP.Client"
+          output_location: "dist/ImgBinder/browser"
           skip_app_build: true
 
   close_pull_request_job:
