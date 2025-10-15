@@ -1,1 +1,8 @@
-{}
+{
+    "header" : {
+        "myProjects" : "Mis proyectos",
+        "newProject" : "Nuevo proyecto",
+        "settings": "Configuración"
+    },
+    "footer" : {}
+}

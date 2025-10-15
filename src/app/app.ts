@@ -1,12 +1,22 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Header } from './shared/layouts/header/header';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('ImgBinder');
+  private transloco: TranslocoService = inject(TranslocoService);
+  
+  ngOnInit() {
+    document.documentElement.lang = this.transloco.getActiveLang();
+
+    this.transloco.langChanges$.subscribe(lang => {
+      document.documentElement.lang = lang;
+    });
+  }
 }

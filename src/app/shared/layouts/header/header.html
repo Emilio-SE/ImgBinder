@@ -1,0 +1,77 @@
+<ng-container *transloco="let t">
+    <!-- Header -->
+    <header class="flex h-[60px] justify-between items-stretch items-center pl-6 border-b-1 
+            bg-rose-400 dark:bg-slate-800 border-rose-300 dark:border-zinc-700">
+
+        <div class="flex items-center">
+            <a routerLink="document" class="text-white font-bold cursor-pointer"
+            (click)="reloadIfSameRoute('document', $event)">
+                IMG <br/>
+                Binder
+            </a>
+        </div>
+
+            <nav class="hidden sm:flex">
+                <a routerLink="history" [ngClass]="navLinkClasses"
+                (click)="reloadIfSameRoute('history', $event)">
+                    {{ t('header.myProjects') }}
+                </a>
+                <a routerLink="document" [ngClass]="navLinkClasses"
+                (click)="reloadIfSameRoute('document', $event)">
+                    {{ t('header.newProject') }}
+                </a>
+                <button [ngClass]="navLinkClasses">
+                    <i-lucide [img]="SettingsIcon"></i-lucide>
+                </button>
+            </nav>
+
+            <div class="flex sm:hidden">
+                <button [ngClass]="navLinkClasses" (click)="openMobileMenu()">
+                    <i-lucide [img]="MenuIcon"></i-lucide>
+                </button>
+            </div>
+    </header>
+
+    <!-- Menu overlay -->
+    <div class="fixed inset-0 bg-black/50 z-[60] sm:hidden transition-opacity duration-300"
+        [class.opacity-0]="!isMobileMenuOpen"
+        [class.pointer-events-none]="!isMobileMenuOpen"
+        [class.opacity-100]="isMobileMenuOpen"
+        (click)="closeMobileMenu()">
+    </div>
+
+    <nav class="fixed top-0 left-0 h-full w-64 z-[70] sm:hidden
+            flex flex-col shadow-xl transition-transform duration-300 ease-out
+            bg-rose-50 dark:bg-slate-600"
+            [class.-translate-x-full]="!isMobileMenuOpen"
+            [class.translate-x-0]="isMobileMenuOpen">
+        
+        <div class="flex justify-between items-center px-6 h-[60px] 
+        bg-rose-400 dark:bg-slate-800 border-b border-rose-300 dark:border-zinc-700">
+            <span class="font-bold text-white" >
+                IMG <br/> 
+                Binder
+            </span>
+            <button class="cursor-pointer text-white p-2 rounded transition-colors 
+            hover:bg-rose-500 dark:hover:bg-slate-700" (click)="closeMobileMenu()">
+                <i-lucide [img]="PanelLeftClose"></i-lucide>
+            </button>
+        </div>
+
+        <div class="flex flex-col">
+            <a routerLink="history" 
+                (click)="reloadIfSameRoute('history', $event)"
+                [ngClass]="navLinkMobileClasses">
+                {{ t('header.myProjects') }}
+            </a>
+            <a routerLink="document"
+                (click)="reloadIfSameRoute('document', $event)"
+                [ngClass]="navLinkMobileClasses">
+                {{ t('header.newProject') }}
+            </a>
+            <button [ngClass]="navLinkMobileClasses">
+                {{ t('header.settings') }}
+            </button>
+        </div>
+    </nav>
+</ng-container>
