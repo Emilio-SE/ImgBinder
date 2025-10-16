@@ -1,1 +1,11 @@
-<p>document-generation works!</p>
+<div class="flex h-full relative overflow-hidden">
+    <app-preview-section class="flex-1" />
+    
+    <!-- FIXME: Fix h-[calc(100%-48px)] when defining the height of the submenu. -->
+    <app-settings-section 
+        class="absolute md:relative top-[48px] md:top-0 right-0 h-[calc(100%-48px)] md:h-full w-full sm:w-[300px] 
+        sm:border-l-2 border-t-2 md:border-t-0 border-rose-400 dark:border-slate-700
+        transition-transform duration-300 ease-out z-40 md:translate-x-0"
+        [class.translate-x-full]="!isSettingsOpen"
+        [class.translate-x-0]="isSettingsOpen" />
+</div>
