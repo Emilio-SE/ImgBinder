@@ -46,7 +46,7 @@ export class PreviewMenu {
   // Properties
   private subscriptions: Subscription[] = [];
 
-  public status: "saving" | "success" | "error" = "success";
+  public status: 'saving' | 'success' | 'error' = 'success';
 
   private _isMobileMenuOpen: boolean = false;
   public addImageOptions: DropdownMenuOption[] = [
@@ -54,8 +54,8 @@ export class PreviewMenu {
     { icon: ArrowRightToLine, value: 'after', text: '' },
   ];
   public mobileMenuOptions: DropdownMenuOption[] = [
-    { icon: ArrowLeftToLine, value: 'before', text: 'Agregar antes' },
-    { icon: ArrowRightToLine, value: 'after', text: 'Agregar después' },
+    { icon: ArrowLeftToLine, value: 'before', text: '' },
+    { icon: ArrowRightToLine, value: 'after', text: '' },
     { icon: Save, value: 'save', text: '' },
     { icon: Trash2, value: 'delete', text: '' },
   ];
