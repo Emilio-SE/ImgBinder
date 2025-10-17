@@ -1,0 +1,21 @@
+<ng-container *transloco="let t">
+    <div class="flex items-center gap-1 px-6 text-sm text-black dark:text-white select-none">
+
+        @if(status === "saving"){
+    
+        <i-lucide [img]="LoaderCircleIcon" [size]="18" class="animate-spin" style="animation-duration: 5s" />
+        <span> {{ t("statusCheck.saving") }} </span>
+
+        } @else if (status === "success") {
+
+        <i-lucide [img]="CircleCheckIcon" [size]="18" />
+        <span> {{ t("statusCheck.success") }} </span>
+        
+        } @else if (status === "error") {
+
+        <i-lucide [img]="CircleAlertIcon" [size]="18" />
+        <span> {{ t("statusCheck.error") }} </span>
+
+        }
+    </div>
+</ng-container>
