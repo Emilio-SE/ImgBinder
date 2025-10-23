@@ -1,11 +1,11 @@
 <div class="relative select-none">
-    <div class="flex items-center gap-1 px-6 py-3 cursor-pointer transition-colors
+    <button class="flex items-center gap-1 px-6 py-3 cursor-pointer transition-colors
     bg-rose-50 dark:bg-slate-600 hover:bg-rose-100 dark:hover:bg-slate-700" (click)="toggleDropdown()">
         <span class="hidden md:block"> {{ placeholder }} </span>
         <i-lucide [img]="icon" class="block md:hidden" />
         <i-lucide [img]="ChevronDownIcon" [size]="16" class="transition-transform duration-200"
             [class.rotate-180]="isDropdownOpen" />
-    </div>
+    </button>
 
     @if(isDropdownOpen) {
     <div
