@@ -17,6 +17,7 @@ import { PreviewMenuDropdown } from './preview-menu-dropdown/preview-menu-dropdo
 import { DropdownMenuOption } from './preview-menu-dropdown/preview-menu-dropdown.interface';
 import { Subscription } from 'rxjs';
 import { PreviewMenuButton } from './preview-menu-button/preview-menu-button';
+import { PreviewMenuStates } from '../../services/preview-menu-states';
 
 @Component({
   selector: 'app-preview-menu',
@@ -35,6 +36,7 @@ import { PreviewMenuButton } from './preview-menu-button/preview-menu-button';
 export class PreviewMenu {
   // Injections
   private translocoSvc: TranslocoService = inject(TranslocoService);
+  private previewMenuStatesSvc: PreviewMenuStates = inject(PreviewMenuStates);
 
   // Icons
   public readonly EllipsisIcon: LucideIconData = Ellipsis;
@@ -48,7 +50,6 @@ export class PreviewMenu {
 
   public status: 'saving' | 'success' | 'error' = 'success';
 
-  private _isMobileMenuOpen: boolean = false;
   public addImageOptions: DropdownMenuOption[] = [
     { icon: ArrowLeftToLine, value: 'before', text: '' },
     { icon: ArrowRightToLine, value: 'after', text: '' },
@@ -126,7 +127,6 @@ export class PreviewMenu {
   }
 
   public toggleMobileMenu(): void {
-    this._isMobileMenuOpen = !this._isMobileMenuOpen;
-    console.log(this._isMobileMenuOpen);
+    this.previewMenuStatesSvc.toggleMobileMenu();
   }
 }
