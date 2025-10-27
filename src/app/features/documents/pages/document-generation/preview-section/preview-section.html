@@ -1,0 +1,5 @@
+<div class="flex flex-col h-full">
+    <app-preview-menu />
+    <app-preview-pane class="h-full" [class.hidden]="!showPreview" />
+    <app-upload-pane class="h-full" [class.hidden]="showPreview" />
+</div>

@@ -1,0 +1,5 @@
+<button [type]="buttonType" class="flex gap-2 items-center justify-center px-4 py-2 rounded w-full h-full"
+    [ngClass]="buttonClasses" (click)="onClickEvent()">
+    <i-lucide [img]="config.state === buttonStates.Disabled ? banIcon : config.icon" />
+    {{config.text}}
+</button>

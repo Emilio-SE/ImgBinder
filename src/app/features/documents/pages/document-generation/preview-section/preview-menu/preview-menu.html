@@ -1,0 +1,29 @@
+<div class="flex justify-between border-b border-rose-400 dark:border-zinc-800
+            bg-rose-100 dark:bg-slate-700">
+
+    <div class="flex items-center">
+        <app-status-check [status]="status" />
+    </div>
+
+    <ng-container *transloco="let t">
+        <div class="flex text-black dark:text-white">
+            <app-preview-menu-dropdown [icon]="EllipsisIcon" [options]="mobileMenuOptions"
+                (OnOptionSelected)="onDropdownSelection($event)"
+                class="sm:hidden border-l border-rose-300 dark:border-zinc-800" />
+
+            <app-preview-menu-dropdown [icon]="ImageUpIcon" [placeholder]="t('common.add')" [options]="addImageOptions"
+                (OnOptionSelected)="onDropdownSelection($event)"
+                class="hidden sm:block border-l border-rose-300 dark:border-zinc-800" />
+
+            <app-preview-menu-button [icon]="SaveIcon" [text]="t('common.save')" (onClick)="onSaveProject()"
+                class="hidden sm:block border-x border-rose-300 dark:border-zinc-800" />
+
+            <app-preview-menu-button [icon]="Trash2Icon" [text]="t('common.delete')" (onClick)="onDeletePage()"
+                class="hidden sm:block" />
+
+            <app-preview-menu-button [icon]="Settings2" [text]="t('common.more')" (onClick)="toggleMobileMenu()"
+                class="lg:hidden border-l border-rose-300 dark:border-zinc-800" />
+        </div>
+    </ng-container>
+
+</div>

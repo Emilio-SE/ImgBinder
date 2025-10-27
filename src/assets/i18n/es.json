@@ -1,8 +1,25 @@
 {
+    "common": {
+        "save": "Guardar",
+        "delete": "Eliminar",
+        "more": "Más",
+        "add": "Agregar",
+        "before": "Antes",
+        "after": "Después"
+    },
     "header" : {
         "myProjects" : "Mis proyectos",
         "newProject" : "Nuevo proyecto",
         "settings": "Configuración"
+    },
+    "previewMenu": {
+        "addBefore": "Agregar antes",
+        "addAfter": "Agregar después"
+    },
+    "statusCheck": {
+        "saving": "Guardando",
+        "success": "Guardado",
+        "error": "Error al guardar"
     },
     "footer" : {}
 }
