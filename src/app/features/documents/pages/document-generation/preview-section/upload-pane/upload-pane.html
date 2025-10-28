@@ -1,1 +1,15 @@
-<p>upload-pane works!</p>
+<div class="h-full w-full flex flex-col items-center justify-center gap-2" (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)">
+
+    <app-button [config]="uploadBtnConfig" (onClick)="openFolderSelection()" />
+
+    <input #inputFile class="hidden" type="file" multiple id="inputFile"
+        accept="image/png, image/jpeg, image/jpg" (change)="onFilesSelected($event)" />
+
+    <span class="text-neutral-800 font-light">-</span>
+
+    <ng-container *transloco="let t">
+        <p class="text-neutral-800 dark:text-neutral-100 font-light text-center"> {{ t("uploadPane.firstTip") }} </p>
+        <p class="text-neutral-800 dark:text-neutral-100 font-light text-center"> {{ t("uploadPane.secondTip") }} </p>
+    </ng-container>
+</div>

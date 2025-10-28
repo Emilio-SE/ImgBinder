@@ -21,5 +21,10 @@
         "success": "Guardado",
         "error": "Error al guardar"
     },
+    "uploadPane": {
+        "btnUpload": "Elegir archivos",
+        "firstTip": "Suelta aquí las imágenes o la carpeta con el contenido",
+        "secondTip": "También puedes soltar un proyecto existente en formato JSON"
+    },
     "footer" : {}
 }
