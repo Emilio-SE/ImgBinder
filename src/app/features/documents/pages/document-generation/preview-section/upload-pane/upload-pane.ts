@@ -10,8 +10,11 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { ImageUploader } from '@core/services/image-uploader';
 import { Button } from '@shared/components/button/button';
 import { ButtonData } from '@shared/components/button/button.interface';
-import { HardDriveUpload, LucideIconData } from 'lucide-angular';
+import { RawImage } from '@core/models/interface/image.interface';
+import { HardDriveUpload } from 'lucide-angular';
 import { Subject, takeUntil } from 'rxjs';
+import { ImageContentBridge } from '../../services/image-content-bridge';
+import { RawImageUploaded } from '@features/documents/models/alias/image-uploader.alias';
 
 @Component({
   selector: 'app-upload-pane',
@@ -27,6 +30,7 @@ export class UploadPane {
   private translocoSvc: TranslocoService = inject(TranslocoService);
   private cdrSvc: ChangeDetectorRef = inject(ChangeDetectorRef);
   private imageUploaderSvc: ImageUploader = inject(ImageUploader);
+  private imageBridgeSvc: ImageContentBridge = inject(ImageContentBridge);
 
   // Observables
   private destroy$: Subject<void> = new Subject();
@@ -62,12 +66,14 @@ export class UploadPane {
     event.stopPropagation();
 
     const images = await this.imageUploaderSvc.drop(event);
+    this.handledUploadedImages(images);
   }
 
   public async onFilesSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const images = await this.imageUploaderSvc.upload(input.files);
+      this.handledUploadedImages(images);
     }
   }
 
@@ -78,5 +84,15 @@ export class UploadPane {
 
   public openFolderSelection(): void {
     this.inputFile.nativeElement.click();
+  }
+
+  private handledUploadedImages(images: RawImageUploaded): void {
+    if(!images) return;
+    this.transferImages(images[0]);
+  }
+
+  private transferImages(imageSet: RawImage[]): void {
+    this.imageBridgeSvc.imagesUploaded = imageSet;
+    this.imageBridgeSvc.showPreviewPane = true;
   }
 }

@@ -10,11 +10,12 @@ import { CommonModule } from '@angular/common';
 import { SettingsSection } from './settings-section/settings-section';
 import { PreviewSection } from './preview-section/preview-section';
 import { PreviewMenuStates } from './services/preview-menu-states';
+import { ImageContentBridge } from './services/image-content-bridge';
 
 @Component({
   selector: 'app-document-generation',
   imports: [CommonModule, SettingsSection, PreviewSection],
-  providers: [PreviewMenuStates],
+  providers: [PreviewMenuStates, ImageContentBridge],
   templateUrl: './document-generation.html',
   styleUrl: './document-generation.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
