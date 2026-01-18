@@ -1,6 +1,6 @@
 export enum ImageSize {
-  Custom,
-  Original,
-  Fill,
-  Contain,
+  Custom = 'custom',
+  Original = 'original',
+  Fill = 'fill',
+  Contain = 'contain',
 }
