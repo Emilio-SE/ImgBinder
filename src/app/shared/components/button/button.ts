@@ -18,7 +18,7 @@ export class Button {
   public banIcon: LucideIconData = Ban;
   public buttonStates: typeof ButtonState = ButtonState;
 
-  public buttonClassMap: Record<string, string> = {
+  public buttonClassMap: Record<ButtonState, string> = {
     [ButtonState.Primary]: 'bg-rose-400 font-semibold text-white transition-colors cursor-pointer',
     [ButtonState.Secondary]: 'bg-rose-200 dark:bg-slate-500 border border-rose-300 dark:border-slate-600 text-dark dark:text-white font-semibold cursor-pointer',
     [ButtonState.Danger]: 'bg-rose-600 font-semibold text-white cursor-pointer',
