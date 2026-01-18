@@ -18,6 +18,7 @@ import { DropdownMenuOption } from './preview-menu-dropdown/preview-menu-dropdow
 import { Subscription } from 'rxjs';
 import { PreviewMenuButton } from './preview-menu-button/preview-menu-button';
 import { PreviewMenuStates } from '../../services/preview-menu-states';
+import { SavingStatus } from './status-check/status-check.enum';
 
 @Component({
   selector: 'app-preview-menu',
@@ -48,7 +49,7 @@ export class PreviewMenu {
   // Properties
   private subscriptions: Subscription[] = [];
 
-  public status: 'saving' | 'success' | 'error' = 'success';
+  public status: SavingStatus = 'error';
 
   public addImageOptions: DropdownMenuOption[] = [
     { icon: ArrowLeftToLine, value: 'before', text: '' },

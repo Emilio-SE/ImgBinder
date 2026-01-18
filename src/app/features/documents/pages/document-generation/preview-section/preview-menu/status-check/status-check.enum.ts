@@ -1,0 +1,1 @@
+export type SavingStatus = 'saving' | 'success' | 'error' ;
