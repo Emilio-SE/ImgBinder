@@ -15,7 +15,7 @@ import {
 import { StatusCheck } from './status-check/status-check';
 import { PreviewMenuDropdown } from './preview-menu-dropdown/preview-menu-dropdown';
 import { DropdownMenuOption } from './preview-menu-dropdown/preview-menu-dropdown.interface';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { PreviewMenuButton } from './preview-menu-button/preview-menu-button';
 import { PreviewMenuStates } from '../../services/preview-menu-states';
 import { SavingStatus } from './status-check/status-check.enum';
@@ -39,6 +39,9 @@ export class PreviewMenu {
   private translocoSvc: TranslocoService = inject(TranslocoService);
   private previewMenuStatesSvc: PreviewMenuStates = inject(PreviewMenuStates);
 
+  // Observables
+  private destroy$: Subject<void> = new Subject();
+
   // Icons
   public readonly EllipsisIcon: LucideIconData = Ellipsis;
   public readonly ImageUpIcon: LucideIconData = ImageUp;
@@ -47,8 +50,6 @@ export class PreviewMenu {
   public readonly Settings2: LucideIconData = Settings2;
 
   // Properties
-  private subscriptions: Subscription[] = [];
-
   public status: SavingStatus = 'error';
 
   public addImageOptions: DropdownMenuOption[] = [
@@ -67,51 +68,28 @@ export class PreviewMenu {
   }
 
   public ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription: Subscription) => {
-      subscription.unsubscribe();
-    });
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private setObservableTranslations(): void {
-    this.subscriptions.push(
-      this.translocoSvc
-        .selectTranslateObject('previewMenu.addBefore')
-        .subscribe((translation: string) => {
-          this.mobileMenuOptions[0].text = translation;
-        })
-    );
+    this.translocoSvc
+      .selectTranslateObject('previewMenu')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((translations) => {
+        this.mobileMenuOptions[0].text = translations.addBefore;
+        this.mobileMenuOptions[1].text = translations.addAfter;
+      });
 
-    this.subscriptions.push(
-      this.translocoSvc
-        .selectTranslateObject('previewMenu.addAfter')
-        .subscribe((translation: string) => {
-          this.mobileMenuOptions[1].text = translation;
-        })
-    );
-
-    this.subscriptions.push(
-      this.translocoSvc.selectTranslateObject('common.before').subscribe((translation: string) => {
-        this.addImageOptions[0].text = translation;
-      })
-    );
-
-    this.subscriptions.push(
-      this.translocoSvc.selectTranslateObject('common.after').subscribe((translation: string) => {
-        this.addImageOptions[1].text = translation;
-      })
-    );
-
-    this.subscriptions.push(
-      this.translocoSvc.selectTranslateObject('common.save').subscribe((translation: string) => {
-        this.mobileMenuOptions[2].text = translation;
-      })
-    );
-
-    this.subscriptions.push(
-      this.translocoSvc.selectTranslateObject('common.delete').subscribe((translation: string) => {
-        this.mobileMenuOptions[3].text = translation;
-      })
-    );
+    this.translocoSvc
+      .selectTranslateObject('common')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((translations) => {
+        this.addImageOptions[0].text = translations.before;
+        this.addImageOptions[1].text = translations.after;
+        this.mobileMenuOptions[2].text = translations.save;
+        this.mobileMenuOptions[3].text = translations.delete;
+      });
   }
 
   // Methods
