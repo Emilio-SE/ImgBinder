@@ -38,7 +38,7 @@ export class UploadPane {
   // Properties
   public uploadBtnConfig: ButtonData = {
     icon: HardDriveUpload,
-    text: ''
+    text: '',
   };
 
   public ngOnInit(): void {
@@ -87,8 +87,18 @@ export class UploadPane {
   }
 
   private handledUploadedImages(images: RawImageUploaded): void {
-    if(!images) return;
+    if (!images) return;
+    this.sortList(images[0]);
     this.transferImages(images[0]);
+  }
+
+  private sortList(images: RawImage[]): void {
+    images.sort((a, b) =>
+      a.file.name.localeCompare(b.file.name, undefined, {
+        numeric: true,
+        sensitivity: 'base',
+      }),
+    );
   }
 
   private transferImages(imageSet: RawImage[]): void {
