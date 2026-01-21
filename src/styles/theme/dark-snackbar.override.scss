@@ -1,0 +1,45 @@
+@use '@angular/material' as mat;
+
+:root {
+  .dark {
+    .mat-snackbar-success {
+      @include mat.snack-bar-overrides(
+        (
+          container-color: theme('colors.emerald.100'),
+          button-color: #000,
+          supporting-text-color: #000,
+        )
+      );
+    }
+
+    .mat-snackbar-info {
+      @include mat.snack-bar-overrides(
+        (
+          container-color: theme('colors.indigo.100'),
+          button-color: #000,
+          supporting-text-color: #000,
+        )
+      );
+    }
+
+    .mat-snackbar-warning {
+      @include mat.snack-bar-overrides(
+        (
+          container-color: theme('colors.orange.100'),
+          button-color: #000,
+          supporting-text-color: #000,
+        )
+      );
+    }
+
+    .mat-snackbar-danger {
+      @include mat.snack-bar-overrides(
+        (
+          container-color: theme('colors.rose.100'),
+          button-color: #000,
+          supporting-text-color: #000,
+        )
+      );
+    }
+  }
+}

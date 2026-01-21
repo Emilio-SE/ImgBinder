@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @use "tailwindcss";
 @use "@styles/base/typography.scss";
+@use "@styles/theme/light-snackbar.override.scss";
+@use "@styles/theme/dark-snackbar.override.scss";
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   font-family: 'Nunito', Roboto, sans-serif;
