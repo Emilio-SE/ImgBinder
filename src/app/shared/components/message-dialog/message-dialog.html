@@ -1,0 +1,14 @@
+<div class="flex flex-col p-5 gap-5 bg-rose-50 dark:bg-slate-600 dark:text-white rounded">
+    <h1 class="font-bold text-lg">{{data.title}}</h1>
+    
+    <p>{{data.message}}</p>
+
+    @if(data.actions){
+    <div class="flex flex-col-reverse gap-4 sm:flex-row sm:gap-5">
+        @if(data.actions.secondaryAction) {
+        <app-button class="flex-1" [config]="data.actions.secondaryAction" (onClick)="action('secondary')" />
+        }
+        <app-button class="flex-1" [config]="data.actions.primaryAction" (onClick)="action('primary')" />
+    </div>
+    }
+</div>
